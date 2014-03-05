@@ -1,0 +1,25 @@
+//
+//  CCUsefulCategories.h
+//  CCUsefulCategories
+//
+//  Created by 何海 on 3/5/14.
+//  Copyright (c) 2014 Sea. All rights reserved.
+//
+#import "UIViewAdditions.h"
+
+#define RGB_A(_rgbValue, _alpha) [UIColor colorWithRed:((float)((_rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((_rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(_rgbValue & 0xFF))/255.0 alpha:_alpha]
+#if TARGET_OS_IPHONE && defined(__IPHONE_5_0) && (__IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0) && __clang__ && (__clang_major__ >= 3)
+#define CC_SDK_SUPPORTS_WEAK 1
+#elif TARGET_OS_MAC && defined(__MAC_10_7) && (MAC_OS_X_VERSION_MIN_REQUIRED >= __MAC_10_7) && __clang__ && (__clang_major__ >= 3)
+#define CC_SDK_SUPPORTS_WEAK 1
+#else
+#define CC_SDK_SUPPORTS_WEAK 0
+#endif
+
+#if CC_SDK_SUPPORTS_WEAK
+#define __cc_weak        __weak
+#define cc_weak weak
+#else
+#define __cc_weak __unsafe_unretained
+#define cc_weak unsafe_unretained
+#endif
